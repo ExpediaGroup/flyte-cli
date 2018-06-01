@@ -24,9 +24,9 @@ import (
 	jsont "github.com/HotelsDotCom/flyte/json"
 	"io/ioutil"
 	"encoding/json"
-	"strings"
 	"github.com/ghodss/yaml"
 	"errors"
+	"path/filepath"
 )
 
 var format string
@@ -114,11 +114,11 @@ func unmarshalFile(filename string, v interface{}) error {
 		return err
 	}
 
-	ext := filename[strings.LastIndex(filename, "."):]
+	ext := filepath.Ext(filename)
 	switch ext {
 	case ".json":
 		return json.Unmarshal(data, v)
-	case ".yaml":
+	case ".yaml", ".yml":
 		return yaml.Unmarshal(data, v)
 	default:
 		return fmt.Errorf("cannot unmarshal: unsuported file %s", ext)

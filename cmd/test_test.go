@@ -25,14 +25,21 @@ import (
 )
 
 func TestTestCommand_ShouldExecuteStepAndReturnOutputForJsonInput(t *testing.T) {
-	output, err := executeCommand(rootCmd, "test", "../testfiles/step-test.json")
+	output, err := executeCommand(rootCmd, "test", "testdata/step-test.json")
 	require.NoError(t, err)
 
 	assert.Equal(t, jsonOutput, output)
 }
 
 func TestTestCommand_ShouldExecuteStepAndReturnOutputForYamlInput(t *testing.T) {
-	output, err := executeCommand(rootCmd, "test", "../testfiles/step-test.yaml")
+	output, err := executeCommand(rootCmd, "test", "testdata/step-test.yaml")
+	require.NoError(t, err)
+
+	assert.Equal(t, jsonOutput, output)
+}
+
+func TestTestCommand_ShouldExecuteStepAndReturnOutputForYmlInput(t *testing.T) {
+	output, err := executeCommand(rootCmd, "test", "testdata/step-test.yml")
 	require.NoError(t, err)
 
 	assert.Equal(t, jsonOutput, output)
@@ -40,7 +47,7 @@ func TestTestCommand_ShouldExecuteStepAndReturnOutputForYamlInput(t *testing.T) 
 
 func TestTestCommand_ShouldExecuteStepAndReturnOutputAsYaml(t *testing.T) {
 	format = "yaml"
-	output, err := executeCommand(rootCmd, "test", "../testfiles/step-test.json")
+	output, err := executeCommand(rootCmd, "test", "testdata/step-test.json")
 	require.NoError(t, err)
 
 	assert.Equal(t, yamlOutput, output)
