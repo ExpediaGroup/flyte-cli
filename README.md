@@ -26,9 +26,11 @@ version     Show the flyte version information
 ```
 
 ### Test command
-Test command is executing step with provided test file containing step, trigger event and optional context and datastore items. It should be in json or yaml format.
+Executes the step in the provided file. Test files MUST contain the
+step, and trigger event definitions, and can optionally contain context and datastore
+items as required. It should be in json or yaml format.
 
-Example:
+Example yaml file:
 ```
 step:
   id: status

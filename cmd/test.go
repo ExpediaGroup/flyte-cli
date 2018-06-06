@@ -149,10 +149,11 @@ func datastoreFn(datastore map[string]interface{}) func(string) interface{} {
 
 const testCmdLong = `
 
-Test step execution with provided test file containing step, trigger event and optional 
-context and datastore items. It should be in json or yaml format.
+Executes the step in the provided file. Test files MUST contain the
+step, and trigger event definitions, and can optionally contain context and datastore
+items as required.
 
-Example:
+Example yaml file:
 ---
 step:
   id: status

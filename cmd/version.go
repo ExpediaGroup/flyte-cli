@@ -21,12 +21,17 @@ import (
 	"github.com/spf13/cobra"
 )
 
+const(
+	cliVersion = "v0.1"
+	apiVersion = "v1"
+)
+
 func newVersionCommand() *cobra.Command{
 	cmd := &cobra.Command{
 		Use:   "version",
 		Short: "Show the flyte cli version information",
 		Run: func(cmd *cobra.Command, args []string) {
-			fmt.Println("Client version:\tv0.1\nAPI version:\tv1")
+			fmt.Printf("Client version:\t%s\nAPI version:\t%s\n", cliVersion, apiVersion)
 		},
 	}
 	return cmd
