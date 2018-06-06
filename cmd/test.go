@@ -47,7 +47,7 @@ func newTestCommand() *cobra.Command {
 			if err != nil {
 				return err
 			}
-			_, err = fmt.Fprint(c.OutOrStdout(), output)
+			_, err = fmt.Fprintln(c.OutOrStdout(), output)
 			return err
 		},
 	}
@@ -77,6 +77,10 @@ func runTestCmd(testFilePath, format string) (string, error) {
 
 type testStep struct {
 	Step      execution.Step
+	TestData testData
+}
+
+type testData struct {
 	Event     execution.Event
 	Context   map[string]string
 	Datastore map[string]interface{}
@@ -85,9 +89,9 @@ type testStep struct {
 func (t testStep) execute() (*testAction, error) {
 	//override default datastore func which is using mongo to get data item
 	//use static map instead which can be passed in the input file
-	template.AddStaticContextEntry("datastore", datastoreFn(t.Datastore))
+	template.AddStaticContextEntry("datastore", datastoreFn(t.TestData.Datastore))
 
-	action, err := t.Step.Execute(t.Event, t.Context)
+	action, err := t.Step.Execute(t.TestData.Event, t.TestData.Context)
 	if err != nil {
 		return nil, err
 	}

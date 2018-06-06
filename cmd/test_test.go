@@ -73,7 +73,8 @@ const jsonOutput = `{
 		"ChannelID": "123",
 		"UserID": "johnny"
 	}
-}`
+}
+`
 
 const yamlOutput = `context:
   ChannelID: "123"
@@ -83,4 +84,5 @@ input:
   message: 'Hey <@johnny>, I''m up and running :run:'
 name: SendMessage
 packName: Slack
+
 `
