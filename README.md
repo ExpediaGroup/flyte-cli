@@ -46,18 +46,19 @@ step:
     input:
       channelId: "{{ Context.ChannelID }}"
       message: 'Hey <@{{ Context.UserID }}>, {{datastore(''message'')}}'
-event:
-  pack:
-    name: Slack
-  event: ReceivedMessage
-  payload:
-    message: flyte status
-    user:
-      id: johny
-context:
-  ChannelID: '123'
-datastore:
-  message: 'I''m up and running :run:' 
+testData:
+  event:
+    pack:
+      name: Slack
+    event: ReceivedMessage
+    payload:
+      message: flyte status
+      user:
+        id: johnny
+  context:
+    ChannelID: '123'
+  datastore:
+    message: 'I''m up and running :run:'
 ```  
 ## Abuse it
 Feel free to experiment and extend it by contributing back :relaxed:
